@@ -27,8 +27,8 @@ public interface DoctorMapper {
 	 * @param id user id
 	 * @return doctor doctor
 	 */
-	@Select(DoctorQuery.READ_DOCTOR_BY_ID)
-	Doctor getDoctorById(int id);
+	@Select(DoctorQuery.READ_DOCTOR)
+	Doctor read(int id);
 	/**
 	 * create user.
 	 * @param doctor doctor model
@@ -36,58 +36,58 @@ public interface DoctorMapper {
 	 */
 	@Insert(UserQuery.INSERT_USER)
 	@Options(useGeneratedKeys = true, keyProperty = "pkUserId", keyColumn = "pk_user_id")
-	int createUser(Doctor doctor);
+	int createUsers(Doctor doctor);
 	/**
 	 * create doctor.
 	 * @param doctor doctor
 	 * @return int created
 	 */
 	@Insert(DoctorQuery.INSERT_DOCTOR)
-	int createDoctor(Doctor doctor);
+	int createDoctors(Doctor doctor);
 	/**
 	 * delete doctor.
 	 * @param id user id
 	 * @return int deleted
 	 */
 	@Update(DoctorQuery.DELETE_DOCTOR)
-	int deleteDoctor(int id);
+	int deleteDoctors(int id);
 	/**
 	 * delete user.
 	 * @param id user id
 	 * @return int deleted
 	 */
 	@Update(UserQuery.DELETE_USER)
-	int deleteUser(int id);
+	int deleteUsers(int id);
 	/**
 	 * update doctor.
 	 * @param doctor doctor
 	 * @return int updated
 	 */
 	@Update(DoctorQuery.UPDATE_DOCTOR)
-	int updateDoctorDetails(Doctor doctor);
+	int updateDoctors(Doctor doctor);
 	/**
 	 * update user.
 	 * @param doctor doctor
 	 * @return int updated
 	 */
 	@Update(UserQuery.UPDATE_USER)
-	int updateUserDetails(Doctor doctor);
+	int updateUsers(Doctor doctor);
 	/**
 	 * read Patients.
 	 * @param doctorId doctor id
 	 * @return list list of patients
 	 */
-	@Select(DoctorQuery.READ_ALL_PATIENTS_BY_DOCTOR_ID)
-	List<Patient> getPatientsByDoctorId(int doctorId);
+	@Select(DoctorQuery.READ_PATIENTS)
+	List<Patient> readPatients(int doctorId);
 	/**
 	 * read all users.
 	 * @return list doctor id
 	 */
 	@Select(DoctorQuery.READ_ALL_DOCTORS)
 	@Results(value = {
-			@Result(property = "patientList", column = "pk_doctor_id", javaType = List.class, many = @Many(select = "getPatientsByDoctorId"))
+			@Result(property = "patientList", column = "pk_doctor_id", javaType = List.class, many = @Many(select = "readPatients"))
 	})
-	List<Doctor> getUsers(List<Integer> userId);
+	List<Doctor> getPatients(int id);
 	//
 	//	@Select(DoctorQuery.READ_DOCTOR)
 	//	@Results(value = {

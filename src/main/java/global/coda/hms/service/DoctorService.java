@@ -38,12 +38,11 @@ public class DoctorService {
 	 * @throws BusinessException business exception
 	 * @throws SystemException system exception
 	 */
-	public Doctor getDoctorById(String id) throws BusinessException, SystemException {
-		logger.entry(id);
+	public Doctor read(String id) throws BusinessException, SystemException {
 		Doctor doctor = null;
 		try {
-
-			doctor = mapper.getDoctorById(Integer.parseInt(id));
+			logger.entry(id);
+			doctor = mapper.read(Integer.parseInt(id));
 			if (doctor == null) {
 				throw new DoctorNotFoundException(ApplicationConstants.DOCTOR_NOT_FOUND);
 			}
@@ -64,14 +63,14 @@ public class DoctorService {
 	 * @throws BusinessException business exception
 	 * @throws SystemException system exception
 	 */
-	public Doctor createDoctor(Doctor doctor) throws BusinessException, SystemException {
+	public Doctor create(Doctor doctor) throws BusinessException, SystemException {
 		Doctor newDoctor = null;
 		int created = 0;
 		logger.entry(doctor);
 		try {
-			created = mapper.createUser(doctor);
+			created = mapper.createUsers(doctor);
 			if (created == 1) {
-				created = mapper.createDoctor(doctor);
+				created = mapper.createDoctors(doctor);
 				if (created == 1) {
 					newDoctor = doctor;
 				}
@@ -93,14 +92,14 @@ public class DoctorService {
 	 * @throws BusinessException business exception
 	 * @throws SystemException system exception
 	 */
-	public String deleteDoctor(String id) throws BusinessException, SystemException {
+	public String delete(String id) throws BusinessException, SystemException {
 		int created = 0;
 		String msg = "";
 		logger.entry(id);
 		try {
-			created = mapper.deleteUser(Integer.parseInt(id));
+			created = mapper.deleteUsers(Integer.parseInt(id));
 			if (created == 1) {
-				mapper.deleteDoctor(Integer.parseInt(id));
+				mapper.deleteDoctors(Integer.parseInt(id));
 				msg = ApplicationConstants.DELETED;
 			} else {
 				throw new DoctorNotFoundException(ApplicationConstants.DOCTOR_NOT_FOUND);
@@ -122,14 +121,14 @@ public class DoctorService {
 	 * @throws BusinessException business exception
 	 * @throws SystemException system exception
 	 */
-	public Doctor updateDoctor(Doctor doctor) throws BusinessException, SystemException {
+	public Doctor update(Doctor doctor) throws BusinessException, SystemException {
 		Doctor newDoctor = null;
 		int created = 0;
 		logger.entry(doctor);
 		try {
-			created = mapper.updateUserDetails(doctor);
+			created = mapper.updateUsers(doctor);
 			if (created == 1) {
-				mapper.updateDoctorDetails(doctor);
+				mapper.updateDoctors(doctor);
 				newDoctor = doctor;
 			} else {
 				throw new DoctorNotFoundException(ApplicationConstants.DOCTOR_NOT_FOUND);
@@ -168,16 +167,12 @@ public class DoctorService {
 	 * @throws BusinessException business exception
 	 * @throws SystemException system exception
 	 */
-	public List<Doctor> readAllDoctors(List<Integer>  userId) throws BusinessException, SystemException {
-		logger.entry(userId);
+	public List<Doctor> readAllDoctor(String  id) throws BusinessException, SystemException {
+		logger.traceEntry();
 		List<Doctor> allDoctors = new LinkedList<Doctor>();
 
 		try {
-			//			StringBuilder idstring = new StringBuilder();
-			//			for (int i : userId) {
-			//				idstring.append(i);
-			//			}
-			allDoctors = mapper.getUsers(userId);
+			allDoctors = mapper.getPatients(Integer.parseInt(id));
 		} catch (NumberFormatException e) {
 			throw new BusinessException(e.getMessage());
 		} catch (Exception e) {

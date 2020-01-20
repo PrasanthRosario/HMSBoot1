@@ -50,7 +50,7 @@ public class DoctorController {
 		logger.entry(id);
 		ResponseBody<Doctor> response = new ResponseBody<Doctor>();
 		response.setSetStatus(ApplicationConstants.SUCCESS);
-		response.setSetMessage(doctorService.getDoctorById(id));
+		response.setSetMessage(doctorService.read(id));
 		logger.traceExit(response);
 		return response;
 
@@ -67,7 +67,7 @@ public class DoctorController {
 		logger.entry(doctor);
 		ResponseBody<Doctor> response = new ResponseBody<Doctor>();
 		response.setSetStatus(ApplicationConstants.SUCCESS);
-		response.setSetMessage(doctorService.createDoctor(doctor));
+		response.setSetMessage(doctorService.create(doctor));
 		logger.traceExit(response);
 		return response;
 	}
@@ -83,7 +83,7 @@ public class DoctorController {
 		logger.entry(doctor);
 		ResponseBody<Doctor> response = new ResponseBody<Doctor>();
 		response.setSetStatus(ApplicationConstants.SUCCESS);
-		response.setSetMessage(doctorService.updateDoctor(doctor));
+		response.setSetMessage(doctorService.update(doctor));
 		logger.traceExit(response);
 		return response;
 	}
@@ -99,7 +99,7 @@ public class DoctorController {
 		logger.entry(id);
 		ResponseBody<String> response = new ResponseBody<String>();
 		response.setSetStatus(ApplicationConstants.DELETED_OK);
-		response.setSetMessage(doctorService.deleteDoctor(id));
+		response.setSetMessage(doctorService.delete(id));
 		logger.traceExit(response);
 		return response;
 	}
@@ -110,16 +110,15 @@ public class DoctorController {
 	 * @throws BusinessException business exception
 	 * @throws SystemException system exception
 	 */
-	@GetMapping("/getAllDoctors")
-	public ResponseBody<List<Doctor>> getAllDoctors(@RequestParam(name = "userId" , required = false) List<Integer> userId) throws BusinessException, SystemException {
+	@GetMapping("/getPatients")
+	public ResponseBody<List<Doctor>> readAllPatients(@RequestParam(name = "userId" , required = false) String userId) throws BusinessException, SystemException {
 		logger.entry(userId);
-		System.out.println(userId);
-		//		if (userId == null) {
-		//			userId.add(0);
-		//		}
+		if (userId == null) {
+			userId = "0";
+		}
 		ResponseBody<List<Doctor>> response = new ResponseBody<List<Doctor>>();
 		response.setSetStatus(ApplicationConstants.SUCCESS);
-		response.setSetMessage(doctorService.readAllDoctors(userId));
+		response.setSetMessage(doctorService.readAllDoctor(userId));
 		logger.traceExit(response);
 		return response;
 	}

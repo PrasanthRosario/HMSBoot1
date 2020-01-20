@@ -4,12 +4,6 @@ package global.coda.hms.constants;
  * @author VC
  *
  */
-//WHERE ID in
-//<foreach item="item" index="index" collection="list"
-//open="(" separator="," close=")">
-//#{item}
-//</foreach>
-//<script><if test= 'pk_user_id !=0'></if></script>
 public final class DoctorQuery {
 	/**
 	 * default Constructor of DoctorQuery.
@@ -23,10 +17,10 @@ public final class DoctorQuery {
 
 	public static final String DELETE_DOCTOR = "update t_doctor set is_active = 0 where fk_user_id = #{id}";
 
-	public static final String READ_DOCTOR_BY_ID = "select * from hmsdb.t_user_details as user "
+	public static final String READ_DOCTOR = "select * from hmsdb.t_user_details as user "
 			+ "LEFT JOIN hmsdb.t_doctor as doctor ON user.pk_user_id = doctor.fk_user_id where user.is_active = 1 and user.fk_role_id = 4 and user.pk_user_id = #{id}";
 
-	public static final String READ_ALL_PATIENTS_BY_DOCTOR_ID = "select patient.username,patient.firstname,record.fk_patient_id,patient.user_id, patient.lastname,patient.blood_group,patient.weight,patient.city,patient.state,patient.phone_number from t_record as record  "
+	public static final String READ_PATIENTS = "select patient.username,patient.firstname,record.fk_patient_id,patient.user_id, patient.lastname,patient.blood_group,patient.weight,patient.city,patient.state,patient.phone_number from t_record as record  "
 			+ "LEFT join (select user.pk_user_id as user_id, user.username,user.password,user.firstname,user.lastname,patient.blood_group,patient.weight,user.fk_role_id,user.city,user.state,user.created_time,user.updated_time, patient.pk_patient_id as patient_id,user.phone_number "
 			+ "from  t_user_details as user LEFT JOIN t_patient as patient ON user.pk_user_id = patient.fk_user_id where  patient.is_active = 1 "
 			+ "and fk_role_id = 3) as patient "
@@ -36,7 +30,7 @@ public final class DoctorQuery {
 	public static final String DOCTOR_ID = "select distinct fk_doctor_id from t_record";
 
 	public static final String READ_ALL_DOCTORS = "<script> select * from hmsdb.t_user_details as user "
-			+ "LEFT JOIN hmsdb.t_doctor as doctor ON user.pk_user_id = doctor.fk_user_id where user.is_active = 1 and  user.fk_role_id = 4 and <if test= 'pk_user_id !=0'>  pk_user_id in (#{userId})</if> ";
+			+ "LEFT JOIN hmsdb.t_doctor as doctor ON user.pk_user_id = doctor.fk_user_id where user.is_active = 1 and  user.fk_role_id = 4 <if test= 'pk_user_id !=0'> and pk_user_id = #{id}  </if></script>";
 
 
 }
