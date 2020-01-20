@@ -57,7 +57,7 @@ public class DoctorService {
 		return doctor;
 	}
 	/**
-	 * To create doctor in the DB.
+	 * To create doctor in the mapper.
 	 * @param doctor doctor
 	 * @return doctor doctor
 	 * @throws BusinessException business exception
