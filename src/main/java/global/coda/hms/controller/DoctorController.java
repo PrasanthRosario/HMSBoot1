@@ -2,8 +2,11 @@ package global.coda.hms.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,6 +30,7 @@ import global.coda.hms.service.DoctorService;
  * @author VC
  *
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/doctors")
 public class DoctorController {
@@ -124,16 +128,18 @@ public class DoctorController {
 	 * @throws BusinessException business exception
 	 * @throws SystemException   system exception
 	 */
-	@GetMapping("/getPatients")
-	public ResponseBody<List<Doctor>> readAllPatients(@RequestParam(name = "userId", required = false) String userId)
+	@GetMapping("/getDoctors")
+	public ResponseBody<List<Doctor>> readAllPatients(@RequestParam(name = "userId", required = false) String userId , HttpServletRequest request)
 			throws BusinessException, SystemException {
 		logger.entry(userId);
 		if (userId == null) {
 			userId = "0";
 		}
+		HttpServletRequest httprequest = request ;
 		ResponseBody<List<Doctor>> response = new ResponseBody<List<Doctor>>();
 		response.setSetStatus(ApplicationConstants.SUCCESS);
 		response.setSetMessage(doctorService.readAllDoctor(userId));
+		response.setRequestId(httprequest.getAttribute("requestId").toString());
 		logger.traceExit(response);
 		return response;
 	}

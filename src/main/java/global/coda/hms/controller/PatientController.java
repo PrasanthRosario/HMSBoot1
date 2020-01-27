@@ -2,6 +2,7 @@ package global.coda.hms.controller;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,9 +25,11 @@ import global.coda.hms.service.PatientService;
  * @author VC
  *
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/patients")
 public class PatientController {
+
 	private PatientService patientService;
 	private final Logger logger = LogManager.getLogger(PatientController.class);
 

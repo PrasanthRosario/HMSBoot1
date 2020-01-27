@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+import org.springframework.stereotype.Component;
 
 import global.coda.hms.constants.PatientQuery;
 import global.coda.hms.constants.UserQuery;
@@ -14,6 +15,7 @@ import global.coda.hms.model.Patient;
  * @author VC
  *
  */
+@Component
 @Mapper
 public interface PatientMapper {
 	/**

@@ -60,7 +60,7 @@ public class Patient extends UserDetails {
 				+ ", getIsActive()=" + getIsActive() + ", getUpdatedDate()=" + getUpdatedDate() + ", getPhoneNumber()="
 				+ getPhoneNumber() + ", getUsername()=" + getUsername() + ", getState()=" + getState() + ", getCity()="
 				+ getCity() + ", getFirstname()=" + getFirstname() + ", getLastname()=" + getLastname()
-				+ ", getPassword()=" + getPassword() + ", getRoleId()=" + getRoleId() + ", toString()="
+				+ ", getPassword()=" + getPassword() + ", getRoleId()=" + getFkRoleId() + ", toString()="
 				+ super.toString() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + "]";
 	}
 

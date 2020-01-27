@@ -19,6 +19,13 @@ public class ResponseBody<T> {
 	 * set set status code.
 	 * @param setStatus setStatus code
 	 */
+	private String requestId;
+	public void setRequestId(String object) {
+		this.requestId = object;
+	}
+	public String getRequestId() {
+		return requestId;
+	}
 	public void setSetStatus(int setStatus) {
 		this.setStatus = setStatus;
 	}

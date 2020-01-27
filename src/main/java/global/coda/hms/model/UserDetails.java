@@ -218,22 +218,23 @@ public class UserDetails {
 		return createdTime;
 	}
 
+
 	/**
-	 * Gets roleId.
+	 * Gets the fk role id.
 	 *
-	 * @return roleid Value of roleId.
+	 * @return the fk role id
 	 */
-	public int getRoleId() {
+	public int getFkRoleId() {
 		return fkRoleId;
 	}
 
 	/**
-	 * Sets new roleId.
+	 * Sets the fk role id.
 	 *
-	 * @param roleId New value of roleId.
+	 * @param fkRoleId the new fk role id
 	 */
-	public void setRoleId(int roleId) {
-		this.fkRoleId = roleId;
+	public void setFkRoleId(int fkRoleId) {
+		this.fkRoleId = fkRoleId;
 	}
 
 	/**

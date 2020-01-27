@@ -2,9 +2,12 @@
 <!DOCTYPE xml>
 <Configuration status="WARN" monitorInterval="30">
 	<Appenders>
-    <Console name="Console" target="SYSTEM_OUT">
+	<Console name="Console" target = "SYSTEM_OUT">
+			<PatternLayout pattern = "%-5p|%d{ISO8601}{GMT}|%X{slf4jMDCFilter.UUID}|%c{1}|%m%ex%n"/>
+		</Console> 
+<!-- <Console name="Console" target="SYSTEM_OUT">
       <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
-    </Console>
+    </Console> -->    
   </Appenders>
 	<Loggers>
 		<Logger name="global.coda.hms" level="trace"
@@ -14,5 +17,6 @@
 		<Root level="info">
 			<AppenderRef ref="Console" />
 		</Root>
+		
 	</Loggers>
 </Configuration>

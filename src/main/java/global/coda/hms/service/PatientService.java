@@ -2,6 +2,7 @@ package global.coda.hms.service;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import global.coda.hms.constants.ApplicationConstants;
@@ -18,6 +19,7 @@ import global.coda.hms.model.Patient;
  */
 @Service
 public class PatientService {
+	@Autowired
 	private PatientMapper mapper;
 
 	private final  Logger logger = LogManager.getLogger(PatientService.class);
@@ -25,9 +27,12 @@ public class PatientService {
 	 * Default constructor.
 	 * @param mapper mapper
 	 */
-	public PatientService(PatientMapper mapper) {
-		this.mapper = mapper;
-	}
+	//	public PatientService(PatientMapper mapper) {
+	//		this.mapper = mapper;
+	//	}
+	//	public PatientService() {
+	//		// TODO Auto-generated constructor stub
+	//	}
 	/**
 	 * read patient.
 	 * @param id user id
